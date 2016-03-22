@@ -17,15 +17,19 @@ class Validator extends CakeValidator
     public function addPattern($field, $pattern)
     {
         $pattern = new Collection((array)$pattern);
-        $field = $this->field($field);
+        $validationSet = $this->field($field);
         $validationPatterns = self::$validationPatterns;
-        $pattern->each(function($key) use ($field, $validationPatterns) {
+        $pattern->each(function($key) use ($field, $validationSet, $validationPatterns) {
             if (empty($validationPatterns[$key])) {
+                if (method_exists($this, $key)) {
+                    $this->{$key}($field);
+                    return;
+                }
                 throw new NoValidationPatternException('Not found pattern `' . $key . '`');
             }
             $rules = new Collection($validationPatterns[$key]);
-            $rules->each(function($rule, $name) use ($field) {
-                $field->add($name, $rule);
+            $rules->each(function($rule, $name) use ($validationSet) {
+                $validationSet->add($name, $rule);
             });
         });
         return $this;
