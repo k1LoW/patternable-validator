@@ -51,7 +51,7 @@ class UsersTable extends AppTable
             ->allowEmpty('id', 'create');
         $validator
             ->allowEmpty('username')
-            ->addPattern('username', ['username_length']);
+            ->addPattern('username', ['username_length', 'requirePresence']);
         $validator
             ->allowEmpty('password');
     }
