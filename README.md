@@ -23,7 +23,7 @@ class AppTable extends Table
         parent::initialize($config);
         $this->_validatorClass = '\PatternedValidator\Validation\Validator';
         \PatternedValidator\Validation\Validator::$validationPatterns = [
-            'username_pattern' => [
+            'username_length' => [
                 'minLength4' => [
                     'rule' => ['minLength', 4],
                     'message' => __('Validation Error: minLength4'),
@@ -51,7 +51,7 @@ class UsersTable extends AppTable
             ->allowEmpty('id', 'create');
         $validator
             ->allowEmpty('username')
-            ->addPattern('username', ['username']);
+            ->addPattern('username', ['username_length']);
         $validator
             ->allowEmpty('password');
     }
