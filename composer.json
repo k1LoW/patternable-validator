@@ -1,6 +1,15 @@
 {
     "name": "k1low/patternable-validator",
     "description": "PatternableValidator plugin for CakePHP 3",
+    "keywords": ["validation"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ken'ichiro Oyama",
+            "homepage": "https://github.com/k1LoW",
+            "role": "Author"
+        }
+    ],
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",
@@ -16,8 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PatternableValidator\\Test\\": "tests",
-            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+            "PatternableValidator\\Test\\": "tests"
         }
     }
 }
