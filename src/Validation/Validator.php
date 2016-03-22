@@ -21,7 +21,7 @@ class Validator extends CakeValidator
         $validationPatterns = self::$validationPatterns;
         $pattern->each(function($key) use ($field, $validationPatterns) {
             if (empty($validationPatterns[$key])) {
-                throw new NoValidationPatternException();
+                throw new NoValidationPatternException('Not found pattern `' . $key . '`');
             }
             $rules = new Collection($validationPatterns[$key]);
             $rules->each(function($rule, $name) use ($field) {
