@@ -40,6 +40,12 @@ class Validator extends CakeValidator
      * syntax sugar methods
      *
      */
+    public function requirePresenceWhenCreate($field){
+        return $this->requirePresence($field, 'create');
+    }
+    public function requirePresenceWhenUpdate($field){
+        return $this->requirePresence($field, 'update');
+    }
     public function allowEmptyWhenCreate($field){
         return $this->allowEmpty($field, 'create');
     }
