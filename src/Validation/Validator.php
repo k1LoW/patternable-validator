@@ -40,17 +40,17 @@ class Validator extends CakeValidator
      * syntax sugar methods
      *
      */
-    public function allowEmtpyWhenCreate($field){
-        return $this->allowEmtpy($field, 'create');
+    public function allowEmptyWhenCreate($field){
+        return $this->allowEmpty($field, 'create');
     }
-    public function allowEmtpyWhenUpdate($field){
-        return $this->allowEmtpy($field, 'update');
+    public function allowEmptyWhenUpdate($field){
+        return $this->allowEmpty($field, 'update');
     }
-    public function notEmtpyWhenCreate($field, $message = null){
-        return $this->notEmtpy($field, $message, 'create');
+    public function notEmptyWhenCreate($field, $message = null){
+        return $this->notEmpty($field, $message, 'create');
     }
-    public function notEmtpyWhenUpdate($field, $message = null){
-        return $this->notEmtpy($field, $message, 'update');
+    public function notEmptyWhenUpdate($field, $message = null){
+        return $this->notEmpty($field, $message, 'update');
     }
 
 }
