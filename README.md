@@ -12,6 +12,61 @@ composer require k1low/patternable-validator
 
 ## Usage
 
+### Before
+
+```php
+<?php
+namespace App\Model\Table;
+
+class UsersTable extends AppTable
+{
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+            
+        $validator
+            ->allowEmpty('username')
+            ->add('username', 'minLength4', [
+                'rule' => ['minLength', 4],
+                'message' => __('Validation Error: minLength4'),
+            ])
+            ->add('username', 'maxLength10', [
+                'rule' => ['maxLength', 10],
+                'message' => __('Validation Error: maxLength10'),
+            ]);
+
+        $validator
+            ->allowEmpty('password');
+    }
+}
+```
+
+### After
+
+```php
+<?php
+namespace App\Model\Table;
+
+class UsersTable extends AppTable
+{
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->addPattern('id', ['integer', 'allowEmptyWhenCreate']);
+
+        $validator
+            ->addPattern('username', ['allowEmpty', 'username_length']);
+        
+        $validator
+            ->appPattern('password', ['allowEmpty']);
+    }
+}
+```
+
+AppTable settings:
+
 ```php
 <?php
 namespace App\Model\Table;
@@ -34,26 +89,6 @@ class AppTable extends Table
                 ]
             ],
         ];
-    }
-}
-```
-
-```php
-<?php
-namespace App\Model\Table;
-
-class UsersTable extends AppTable
-{
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
-        $validator
-            ->allowEmpty('username')
-            ->addPattern('username', ['username_length', 'requirePresence']);
-        $validator
-            ->allowEmpty('password');
     }
 }
 ```
