@@ -92,3 +92,7 @@ class AppTable extends Table
     }
 }
 ```
+
+## for CakePHP 2
+
+see [cakeplus/ValidationPatternsBehavior.php](https://github.com/ichikaway/cakeplus/blob/2.0/Model/Behavior/ValidationPatternsBehavior.php)
